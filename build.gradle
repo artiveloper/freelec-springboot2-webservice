@@ -10,7 +10,6 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
-
 repositories {
     mavenCentral()
     jcenter()
@@ -26,4 +25,8 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+}
+
+test {
+    useJUnitPlatform()
 }
