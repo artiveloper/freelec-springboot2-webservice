@@ -4,8 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,6 +27,7 @@ class PostsRepositoryTest {
         String title = "테스트 게시글";
         String content = "테스트 게시글 본문";
         String author = "artiveloper@gmail.com";
+        LocalDateTime now = LocalDateTime.now();
 
         postsRepository.save(Posts.builder()
                 .title(title)
@@ -42,6 +43,8 @@ class PostsRepositoryTest {
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
         assertThat(posts.getAuthor()).isEqualTo(author);
+        assertThat(posts.getCreatedAt()).isAfter(now);
+        assertThat(posts.getModifiedAt()).isAfter(now);
     }
 
 }
